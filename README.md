@@ -1,4 +1,4 @@
-# Roastery demo SaaS platform using Stripe Connect
+# Greetfans Interview - Mini take-home project
 
 This sample shows how to build a coffee roastery themed SaaS platform using [Stripe Checkout](http://stripe.com/checkout) and [Stripe Connect](https://stripe.com/connect), where coffee roasteries can signup to get their website and wholesale shop with just a few clicks. The Roastery platform takes an application fee for every transaction happening on the platform.
 
