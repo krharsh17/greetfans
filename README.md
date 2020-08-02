@@ -42,7 +42,7 @@ Don't worry, just follow the steps in this guide.
 **1. Clone and configure the sample**
 
 ```
-git clone git@github.com:stripe/stripe-demo-connect-roastery-saas-platform.git
+git clone https://github.com/stripe/stripe-demo-connect-roastery-saas-platform.git
 ```
 
 **2. Configure Stripe**
@@ -71,6 +71,12 @@ STRIPE_CLIENT_ID=<replace-with-your-connect-client-id>
 
 Save the `.env` file and you should be good.
 
+**3. Set A Redirect URI for Stripe Onboarding**
+
+Go to your [connect settings](https://dashboard.stripe.com/settings/applications) to add a redirect uri for Stripe to call back to after a seller onboards with Stripe.
+
+The URI this app users is [http://localhost:3000/stripe/callback](http://localhost:3000/stripe/callback) 
+
 ### Using the sample app
 
 1. Run `npm install`
@@ -79,16 +85,21 @@ Save the `.env` file and you should be good.
 1. The marketplace should be available, and if you go to `/login` you should be able to login as both buyers and sellers using the demo buttons.
 1. 🎉
 
-## FAQ
+## Problem sets
 
-Q: Why did you pick these frameworks?
+P: Enable [Platform setting](http://localhost:3000/dashboard/settings) to change Platform name,Address,City,Zip,State,Platform description and TEL.
 
-A: We chose the most minimal framework to convey the key Stripe calls and concepts you need to understand. These demos are meant as an educational tool that helps you roadmap how to integrate Stripe within your own system independent of the framework.
+P. Implement Firebase authentication to login with google and apple.
 
-Q: Can you show me how to build X?
+P. In [Platform setting](http://localhost:3000/dashboard/settings), add funtionality to upload profile picture of the user to [Firestore database](https://firebase.google.com/docs/firestore).
 
-A: We are always looking for new recipe ideas, please email dev-samples@stripe.com with your suggestion!
+P. In [Platform setting](http://localhost:3000/dashboard/settings) add funtionality to add shop logo, cover photo and tag line which will be dispalyed in [shop page](http://localhost:3000/p/mission-coffee-co) - upload to [Firestore database](https://firebase.google.com/docs/firestore).
 
-## Author(s)
+P. Implement [Product description Page](http://localhost:3000/p/mission-coffee-co/products) for each product with "Buy Now" button.
+hint: you can use existing code for "buy now" funtionality which is available in [Products](http://localhost:3000/p/mission-coffee-co/products)
+
+P. (optional) migrate from [LowDB](https://github.com/typicode/lowdb) to any of object-relational databases like [postgresql](https://www.postgresql.org/)
+
+## project contributor(s)
 
 [@auchenberg-stripe](https://twitter.com/auchenberg)
