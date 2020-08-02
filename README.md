@@ -2,7 +2,7 @@
 
 This sample shows how to build a coffee roastery themed SaaS platform using [Stripe Checkout](http://stripe.com/checkout) and [Stripe Connect](https://stripe.com/connect), where coffee roasteries can signup to get their website and wholesale shop with just a few clicks. The Roastery platform takes an application fee for every transaction happening on the platform.
 
-Platform owners re on-boarded using [Stripe Connect Standard](https://stripe.com/connect) where they connect their existing Stripe account. When the marketplace accepts funds via card payments, the funds are routed to the seller's Stripe accounts as a part of each marketplace transaction.
+Platform owners are on-boarded using [Stripe Connect Standard](https://stripe.com/connect) where they connect their existing Stripe account. When the marketplace accepts funds via card payments, the funds are routed to the seller's Stripe accounts as a part of each marketplace transaction.
 
 See a hosted version of the [https://roastery.stripe.dev](https://roastery.stripe.dev)
 
@@ -13,12 +13,12 @@ See a hosted version of the [https://roastery.stripe.dev](https://roastery.strip
 - Basic user authentication system.
 - Stripe onboarding using Stripe Connect Standard.
 - Payments via Stripe Checkout.
-- Basic platform website for each platform.
+- Basic platform website for each seller.
 - Custom platform dashboard.
 
 ## Architecture
 
-The marketplace is implemented as as full-stack application powered by [Next.js](https://nextjs.org/) and contains a React front-end, and a Node.js REST API.
+The marketplace is implemented as full-stack application powered by [Next.js](https://nextjs.org/) and contains a React front-end, and a Node.js REST API.
 
 The app renders its React components as both the server and client-side using [isomorphic rendering](https://matwrites.com/universal-react-apps-start-with-next-js/).
 
@@ -79,7 +79,7 @@ Save the `.env` file and you should be good.
 
 Go to your [connect settings](https://dashboard.stripe.com/settings/applications) to add a redirect uri for Stripe to call back to after a seller onboards with Stripe.
 
-The URI this app users is [http://localhost:3000/stripe/callback](http://localhost:3000/stripe/callback) 
+The URI this app uses is [http://localhost:3000/stripe/callback](http://localhost:3000/stripe/callback) 
 
 ### Using the sample app
 
@@ -87,7 +87,6 @@ The URI this app users is [http://localhost:3000/stripe/callback](http://localho
 1. Run `npm run dev`
 1. You are now ready to use the app running in [http://localhost:3000](http://localhost:3000).
 1. The marketplace should be available, and if you go to `/login` you should be able to login as both buyers and sellers using the demo buttons.
-1. 🎉
 
 ## Problem sets
 
