@@ -50,7 +50,7 @@ export default async (req, res) => {
         payment_method_types: ['card'],
         billing_address_collection: 'required',
         shipping_address_collection: {
-          allowed_countries: ['US', 'CA'],
+          allowed_countries: ['US', 'CA','IN'],
         },
         line_items: [
           {
