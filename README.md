@@ -42,6 +42,10 @@ Don't worry, just follow the steps in this guide.
 **1. Clone and configure the sample**
 
 ```
+git clone https://github.com/yogistaste/greetfans.git
+
+OR
+
 git clone https://github.com/stripe/stripe-demo-connect-roastery-saas-platform.git
 ```
 
@@ -100,6 +104,6 @@ hint: you can use existing code for "buy now" funtionality which is available in
 
 P. (optional) migrate from [LowDB](https://github.com/typicode/lowdb) to any of object-relational databases like [postgresql](https://www.postgresql.org/)
 
-## project contributor(s)
+## Project contributor(s)
 
 [@auchenberg-stripe](https://twitter.com/auchenberg)
