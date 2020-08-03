@@ -90,11 +90,10 @@ The URI this app uses is [http://localhost:3000/stripe/callback](http://localhos
 
 ## Problem sets
 
-P: Change Basic Authentication system [JWT tokens](https://jwt.io/) to [Firebase Authentication]((https://firebase.google.com/docs/auth)).
+P: Change Basic Authentication system [JWT tokens](https://jwt.io/) to [Firebase Authentication](https://firebase.google.com/docs/auth).
 
 ```
 Hint1: Your are free to use [gatsby-firebase-simple-auth](https://www.gatsbyjs.org/starters/marcomelilli/gatsby-firebase-simple-auth/) or [Next.js+Firebasebase](https://github.com/search?q=nextjs+firebase).
-
 Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or Twitter.
 ```
 
