@@ -90,15 +90,25 @@ The URI this app uses is [http://localhost:3000/stripe/callback](http://localhos
 
 ## Problem sets
 
-P: Change Basic Authentication system [JWT tokens](https://jwt.io/) to Firebase Authentication
+P: Change Basic Authentication system [JWT tokens](https://jwt.io/) to [Firebase Authentication]((https://firebase.google.com/docs/auth)).
+
+```
 Hint1: Your are free to use [gatsby-firebase-simple-auth](https://www.gatsbyjs.org/starters/marcomelilli/gatsby-firebase-simple-auth/) or [Next.js+Firebasebase](https://github.com/search?q=nextjs+firebase).
-Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or GitHub
+
+Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or Twitter.
+```
 
 P: Currently [Platform setting](http://localhost:3000/dashboard/settings) are disabled, Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in [Platform setting](http://localhost:3000/dashboard/settings) add funtionality to add shop logo, cover photo and tag line which will be dispalyed in [shop page](http://localhost:3000/p/mission-coffee-co) store data to [Firestore database](https://firebase.google.com/docs/firestore)
+
+```
 Hint : Data structure and fields same as database.json in /db/database.json from root folder.
+```
 
 P. In [Profile](http://localhost:3000/profile), add funtionality to upload/change profile picture of the user and store in [Firestore database](https://firebase.google.com/docs/firestore).
-Hint : Data structure and fields  same as database.json in /db/database.json from root folder.
+
+```
+Hint : Data structure and fields same as database.json in /db/database.json from root folder.
+```
 
 P. Implement [Product description Page](http://localhost:3000/p/mission-coffee-co/products) for each product with "Buy Now" button.
 Hint: you can use existing code for "buy now" funtionality which is available in [Products](http://localhost:3000/p/mission-coffee-co/products)
