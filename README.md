@@ -104,9 +104,25 @@ Hint2: Any two Authentication APIs [Providers integration](https://firebase.goog
 
 2. Currently "User Platform settings" [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) are disabled to modify.
  
-P: Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in Platform settings [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) and extra fields to add platform logo, cover picture and tag line which will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) and store data to [Firestore database](https://firebase.google.com/docs/firestore)
+P: A. Enable "Update settings" Button and add extra fields to change TEL, availble Timings, Support email, Platform logo, Cover picture, and Tag line. 
+   B. In User "Profile" [http://localhost:3000/profile](http://localhost:3000/profile) add functionality to change Name, and Profile Picture of the User.
+
+Platform logo, Cover picture, Tag line will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co)
+
+TEL, availble Timings, Support email will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffeee-co/contact](http://localhost:3000/p/mission-coffeee-co/contact)
+
+Both "Platform settings" and "Profile" data should be stored in [Firestore database](https://firebase.google.com/docs/firestore)
  
 ```
+Hint1: To Enable Platform settings -> Update settings Button
+Modify: 'publicRuntimeConfig' In next.config.js 
+
+    isTestMode:
+      // process.env.STRIPE_PUBLIC_KEY &&
+      // process.env.STRIPE_PUBLIC_KEY.indexOf('pk') > -1
+      false,
+    }
+
 Hint: Data structure and fields same as database.json in /db/database.json from root folder.
 ```
 
