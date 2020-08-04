@@ -90,9 +90,9 @@ The URI this app uses is [http://localhost:3000/stripe/callback](http://localhos
 
 ## Problem sets
 
-1. Currently, this project has a Basic Authentication system with [JWT tokens](https://jwt.io/) and new users and Platforms are stored in the local database (/db/database.json).
+1. Currently, this project has a Basic Authentication system with [JWT tokens](https://jwt.io/) and new users and Platforms are stored in [LowDB](https://github.com/typicode/lowdb) in a basic local JSON (/db/database.json).
  
-P: Store data in [Firestore database](https://firebase.google.com/docs/firestore) and implement [Firebase Authentication](https://firebase.google.com/docs/auth).
+P: Change Data Storage to [Firestore database](https://firebase.google.com/docs/firestore) and implement [Firebase Authentication](https://firebase.google.com/docs/auth).
 
 ```
 Hint1: You are free to use code samples from [Next.js +Firebase authentication](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication).
