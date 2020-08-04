@@ -90,30 +90,33 @@ The URI this app uses is [http://localhost:3000/stripe/callback](http://localhos
 
 ## Problem sets
 
-P: Change Basic Authentication system with [JWT tokens](https://jwt.io/) to [Firebase Authentication](https://firebase.google.com/docs/auth).
+1. Currently, this project has a Basic Authentication system with [JWT tokens](https://jwt.io/) and new users and Platforms are stored in the local database (/db/database.json).
+ 
+P: Store data in [Firestore database](https://firebase.google.com/docs/firestore) and implement [Firebase Authentication](https://firebase.google.com/docs/auth).
 
 ```
-Hint1: Your are free to use code samples from [Next.js +Firebase authentication](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication).
-
+Hint1: You are free to use code samples from [Next.js +Firebase authentication](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication).
+ 
 Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or Twitter.
 ```
 
-P: Currently [Platform setting](http://localhost:3000/dashboard/settings) are disabled, Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in [Platform setting](http://localhost:3000/dashboard/settings) add funtionality to add shop logo, cover photo and tag line which will be dispalyed in [shop page](http://localhost:3000/p/mission-coffee-co) store data to [Firestore database](https://firebase.google.com/docs/firestore)
-
+2. Currently "User Platform settings" [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) are disabled to modify.
+ 
+P. Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in Platform settings [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) and extra fields to add platform logo, cover picture and tag line which will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) store data to [Firestore database](https://firebase.google.com/docs/firestore)
+ 
 ```
-Hint : Data structure and fields same as database.json in /db/database.json from root folder.
-```
-
-P. In [Profile](http://localhost:3000/profile), add funtionality to upload/change profile picture of the user and store in [Firestore database](https://firebase.google.com/docs/firestore).
-
-```
-Hint : Data structure and fields same as database.json in /db/database.json from root folder.
+Hint: Data structure and fields same as database.json in /db/database.json from root folder.
 ```
 
-P. Implement [Product description Page](http://localhost:3000/p/mission-coffee-co/products) for each product with "Buy Now" button.
-Hint: you can use existing code for "buy now" funtionality which is available in [Products](http://localhost:3000/p/mission-coffee-co/products)
+3. Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) will have a list of Products once user add new product by clicking "Add New" from Dashboard. Each product is displayed with Product Name, Price, and "Buy Now" Button. Right now click "Buy Now" Button is directly going to the checkout page, Need to change checkout route from "Product description Page".
+ 
+P. Implement Product description Page with url route[http://localhost:3000/p/mission-coffee-co/products/{ProductName}](http://localhost:3000/p/mission-coffee-co/products/{ProductName}) for each product with "Buy Now" button.
+ 
+```
+Hint: you can use existing code for "buy now" functionality which is available in Products Page (http://localhost:3000/p/mission-coffee-co/products)
+```
 
-P. Documentation for each problem set implementation.
+4. Documentation for each problem set implementation.
 
 
 ## Project contributor(s)
