@@ -100,13 +100,17 @@ Hint1: You are free to use code samples from [Next.js +Firebase authentication](
 Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or Twitter.
 ```
 
+
+
 2. Currently "User Platform settings" [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) are disabled to modify.
  
-P. Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in Platform settings [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) and extra fields to add platform logo, cover picture and tag line which will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) store data to [Firestore database](https://firebase.google.com/docs/firestore)
+P: Enable them to change Platform name, Address, City, Zip, State, Platform description and TEL and in Platform settings [http://localhost:3000/dashboard/settings](http://localhost:3000/dashboard/settings) and extra fields to add platform logo, cover picture and tag line which will be displayed in Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) store data to [Firestore database](https://firebase.google.com/docs/firestore)
  
 ```
 Hint: Data structure and fields same as database.json in /db/database.json from root folder.
 ```
+
+
 
 3. Platform Public URL [http://localhost:3000/p/mission-coffee-co](http://localhost:3000/p/mission-coffee-co) will have a list of Products once user add new product by clicking "Add New" from Dashboard. Each product is displayed with Product Name, Price, and "Buy Now" Button. Right now click "Buy Now" Button is directly going to the checkout page, Need to change checkout route from "Product description Page".
  
@@ -115,6 +119,8 @@ P. Implement Product description Page with url route[http://localhost:3000/p/mis
 ```
 Hint: you can use existing code for "buy now" functionality which is available in Products Page (http://localhost:3000/p/mission-coffee-co/products)
 ```
+
+
 
 4. Documentation for each problem set implementation.
 
