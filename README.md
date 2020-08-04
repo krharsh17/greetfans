@@ -90,10 +90,10 @@ The URI this app uses is [http://localhost:3000/stripe/callback](http://localhos
 
 ## Problem sets
 
-P: Change Basic Authentication system [JWT tokens](https://jwt.io/) to [Firebase Authentication](https://firebase.google.com/docs/auth).
+P: Change Basic Authentication system with [JWT tokens](https://jwt.io/) to [Firebase Authentication](https://firebase.google.com/docs/auth).
 
 ```
-Hint1: Your are free to use [Next.js +Firebase authentication](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication).
+Hint1: Your are free to use code samples from [Next.js +Firebase authentication](https://github.com/vercel/next.js/tree/canary/examples/with-firebase-authentication).
 
 Hint2: Any two Authentication APIs [Providers integration](https://firebase.google.com/docs/auth) with Google, Facebook, or Twitter.
 ```
