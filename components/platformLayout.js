@@ -1,25 +1,24 @@
 import React from 'react';
 import Head from '../components/head';
 import NProgress from '../components/nprogress';
-import getConfig from 'next/config';
 
 class PlatformLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
+    constructor(props) {
+        super(props);
+        this.props = props;
+    }
 
-  render() {
-    return (
-      <>
-        <Head title={this.props.title || 'Home'} />
-        <NProgress />
+    render() {
+        return (
+            <>
+                <Head title={this.props.title || 'Home'}/>
+                <NProgress/>
 
-        <div className={'app-platform container-fluid'}>
-          {this.props.children}
-        </div>
+                <div className={'app-platform container-fluid'}>
+                    {this.props.children}
+                </div>
 
-        <style jsx>{`
+                <style jsx>{`
           :global(body) {
             font-family: -apple-system, BlinkMacSystemFont, Roboto,
               Helvetica Neue, sans-serif;
@@ -103,9 +102,9 @@ class PlatformLayout extends React.Component {
             margin-bottom: 8px;
           }
         `}</style>
-      </>
-    );
-  }
+            </>
+        );
+    }
 }
 
 export default PlatformLayout;

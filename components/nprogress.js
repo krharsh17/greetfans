@@ -3,49 +3,49 @@ import NProgress from 'nprogress';
 import Router from 'next/router';
 
 class NProgressContainer extends React.Component {
-  static defaultProps = {
-    color: '#2299DD',
-    showAfterMs: 300,
-    spinner: true,
-  };
+    static defaultProps = {
+        color: '#2299DD',
+        showAfterMs: 300,
+        spinner: true,
+    };
 
-  timer = null;
+    timer = null;
 
-  routeChangeStart = () => {
-    const {showAfterMs} = this.props;
-    clearTimeout(this.timer);
-    this.timer = setTimeout(NProgress.start, showAfterMs);
-  };
+    routeChangeStart = () => {
+        const {showAfterMs} = this.props;
+        clearTimeout(this.timer);
+        this.timer = setTimeout(NProgress.start, showAfterMs);
+    };
 
-  routeChangeEnd = () => {
-    clearTimeout(this.timer);
-    NProgress.done();
-  };
+    routeChangeEnd = () => {
+        clearTimeout(this.timer);
+        NProgress.done();
+    };
 
-  componentDidMount() {
-    const {options} = this.props;
+    componentDidMount() {
+        const {options} = this.props;
 
-    if (options) {
-      NProgress.configure(options);
+        if (options) {
+            NProgress.configure(options);
+        }
+
+        Router.events.on('routeChangeStart', this.routeChangeStart);
+        Router.events.on('routeChangeComplete', this.routeChangeEnd);
+        Router.events.on('routeChangeError', this.routeChangeEnd);
     }
 
-    Router.events.on('routeChangeStart', this.routeChangeStart);
-    Router.events.on('routeChangeComplete', this.routeChangeEnd);
-    Router.events.on('routeChangeError', this.routeChangeEnd);
-  }
+    componentWillUnmount() {
+        clearTimeout(this.timer);
+        Router.events.off('routeChangeStart', this.routeChangeStart);
+        Router.events.off('routeChangeComplete', this.routeChangeEnd);
+        Router.events.off('routeChangeError', this.routeChangeEnd);
+    }
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-    Router.events.off('routeChangeStart', this.routeChangeStart);
-    Router.events.off('routeChangeComplete', this.routeChangeEnd);
-    Router.events.off('routeChangeError', this.routeChangeEnd);
-  }
+    render() {
+        const {color, spinner} = this.props;
 
-  render() {
-    const {color, spinner} = this.props;
-
-    return (
-      <style jsx global>{`
+        return (
+            <style jsx global>{`
         #nprogress {
           pointer-events: none;
         }
@@ -113,8 +113,8 @@ class NProgressContainer extends React.Component {
           }
         }
       `}</style>
-    );
-  }
+        );
+    }
 }
 
 export default NProgressContainer;

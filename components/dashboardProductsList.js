@@ -1,26 +1,24 @@
-import Link from 'next/link';
-
 function DashboardProductsList(props) {
-  const list = props.list ? [...props.list] : [];
+    const list = props.list ? [...props.list] : [];
 
-  let listItems = [];
+    let listItems = [];
 
-  if (list) {
-    listItems = list.map((item) => (
-      <li className="item" key={item.id}>
-        {item.name && (
-          <>
-            {<img src={item.images} />}
-            <h4>{item.name}</h4>
-            <a
-              target="_blank"
-              href={'https://dashboard.stripe.com/test/products/' + item.id}
-            >
-              Edit
-            </a>
-          </>
-        )}
-        <style jsx>{`
+    if (list) {
+        listItems = list.map((item) => (
+            <li className="item" key={item.id}>
+                {item.name && (
+                    <>
+                        {<img src={item.images}/>}
+                        <h4>{item.name}</h4>
+                        <a
+                            target="_blank"
+                            href={'https://dashboard.stripe.com/test/products/' + item.id}
+                        >
+                            Edit
+                        </a>
+                    </>
+                )}
+                <style jsx>{`
           .item {
             height: 300px;
             position: relative;
@@ -47,15 +45,15 @@ function DashboardProductsList(props) {
             margin-bottom: 20px;
           }
         `}</style>
-      </li>
-    ));
-  }
+            </li>
+        ));
+    }
 
-  return (
-    <ul className="products-list">
-      {listItems}
+    return (
+        <ul className="products-list">
+            {listItems}
 
-      <style jsx>{`
+            <style jsx>{`
         .products-list {
           list-style: none;
           padding: 0;
@@ -78,8 +76,8 @@ function DashboardProductsList(props) {
           }
         }        
       `}</style>
-    </ul>
-  );
+        </ul>
+    );
 }
 
 export default DashboardProductsList;

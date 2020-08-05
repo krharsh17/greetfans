@@ -3,40 +3,40 @@ import Link from 'next/link';
 import NavProfile from './navProfile';
 
 class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let logoSrc = '/logo.svg';
-    let navClass = 'navbar navbar-fixed navbar-expand-lg';
-
-    if (this.props.isDashboard) {
-      logoSrc = '/logo_dark.svg';
-      navClass += ' navbar-light';
-    } else {
-      navClass += ' navbar-dark';
+    constructor(props) {
+        super(props);
     }
 
-    return (
-      <div className="navigation container">
-        <nav className={navClass}>
-          <ul className="navbar-nav mr-auto">
-            <li className="navitem d-flex">
-              <Link href="/">
-                <a className="navbar-brand">
-                  <img className="logo" src={logoSrc} />
-                </a>
-              </Link>
-            </li>
-          </ul>
+    render() {
+        let logoSrc = '/logo.svg';
+        let navClass = 'navbar navbar-fixed navbar-expand-lg';
 
-          <NavProfile
-            isAuthenticated={this.props.isAuthenticated}
-            userProfile={this.props.userProfile}
-          />
+        if (this.props.isDashboard) {
+            logoSrc = '/logo_dark.svg';
+            navClass += ' navbar-light';
+        } else {
+            navClass += ' navbar-dark';
+        }
 
-          <style jsx>{`
+        return (
+            <div className="navigation container">
+                <nav className={navClass}>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="navitem d-flex">
+                            <Link href="/">
+                                <a className="navbar-brand">
+                                    <img className="logo" src={logoSrc}/>
+                                </a>
+                            </Link>
+                        </li>
+                    </ul>
+
+                    <NavProfile
+                        isAuthenticated={this.props.isAuthenticated}
+                        userProfile={this.props.userProfile}
+                    />
+
+                    <style jsx>{`
             .navbar {
               margin: 32px 0 32px 0;
               padding: 0;
@@ -53,9 +53,10 @@ class Nav extends React.Component {
               align-self: center;
             }
           `}</style>
-        </nav>
-      </div>
-    );
-  }
+                </nav>
+            </div>
+        );
+    }
 }
+
 export default Nav;

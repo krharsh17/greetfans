@@ -8,43 +8,43 @@ import logger from '../../helpers/logger';
 import Layout from '../../components/layout';
 
 class AuthStripeCallback extends React.Component {
-  static async getInitialProps() {
-    return {};
-  }
-
-  async finalize() {
-    let code = Router.router.query.code;
-    try {
-      let req = await API.makeRequest('post', `/api/payouts/setup`, {
-        code: code,
-      });
-
-      if (req && req.status === 'ok') {
-        return redirect('/dashboard');
-      } else {
-        logger.log('req', req);
-      }
-    } catch (err) {
-      logger.log('AuthStripeCallback.error', err);
+    static async getInitialProps() {
+        return {};
     }
-  }
 
-  componentDidMount() {
-    this.finalize();
-  }
+    async finalize() {
+        let code = Router.router.query.code;
+        try {
+            let req = await API.makeRequest('post', `/api/payouts/setup`, {
+                code: code,
+            });
 
-  render() {
-    return (
-      <Layout
-        isAuthenticated={this.props.isAuthenticated}
-        userProfile={this.props.userProfile}
-        title="Dashboard"
-      >
-        <div className="">
-          <img src="/loader.svg" className="loader" />
-        </div>
+            if (req && req.status === 'ok') {
+                return redirect('/dashboard');
+            } else {
+                logger.log('req', req);
+            }
+        } catch (err) {
+            logger.log('AuthStripeCallback.error', err);
+        }
+    }
 
-        <style jsx>{`
+    componentDidMount() {
+        this.finalize();
+    }
+
+    render() {
+        return (
+            <Layout
+                isAuthenticated={this.props.isAuthenticated}
+                userProfile={this.props.userProfile}
+                title="Dashboard"
+            >
+                <div className="">
+                    <img src="/loader.svg" className="loader"/>
+                </div>
+
+                <style jsx>{`
           .loader {
             position: absolute;
             top: 50%;
@@ -53,9 +53,9 @@ class AuthStripeCallback extends React.Component {
             margin-top: -19px;
           }
         `}</style>
-      </Layout>
-    );
-  }
+            </Layout>
+        );
+    }
 }
 
 export default AuthStripeCallback;

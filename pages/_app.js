@@ -1,63 +1,61 @@
 import React from 'react';
-import App, {Container} from 'next/app';
+import App from 'next/app';
 import API from '../helpers/api';
-import logger from '../helpers/logger';
 import nextCookie from 'next-cookies';
-import Layout from '../components/layout';
 import cookie from 'js-cookie';
 
 export default class GlobalApp extends App {
-  static getAuthenticationState(appContext) {
-    let token = '';
+    static getAuthenticationState(appContext) {
+        let token = '';
 
-    if (appContext && appContext.ctx) {
-      token = nextCookie(appContext.ctx)['token'];
-    } else {
-      token = cookie.get('token');
+        if (appContext && appContext.ctx) {
+            token = nextCookie(appContext.ctx)['token'];
+        } else {
+            token = cookie.get('token');
+        }
+
+        const isAuthenticated = token !== undefined;
+
+        return {
+            token,
+            isAuthenticated,
+        };
     }
 
-    const isAuthenticated = token !== undefined;
+    static async getInitialProps(appContext) {
+        let {token, isAuthenticated} = this.getAuthenticationState(appContext);
 
-    return {
-      token,
-      isAuthenticated,
-    };
-  }
+        // Ensure API is set for server-side-side
+        API.setContext(appContext.ctx);
+        API.setToken(token);
 
-  static async getInitialProps(appContext) {
-    let {token, isAuthenticated} = this.getAuthenticationState(appContext);
+        let userProfile;
+        if (token) {
+            userProfile = await API.makeRequest('get', '/api/profile');
+        }
 
-    // Ensure API is set for server-side-side
-    API.setContext(appContext.ctx);
-    API.setToken(token);
+        let appProps = await App.getInitialProps(appContext);
+        let props = {...appProps, token, isAuthenticated, userProfile};
 
-    let userProfile;
-    if (token) {
-      userProfile = await API.makeRequest('get', '/api/profile');
+        return props;
     }
 
-    let appProps = await App.getInitialProps(appContext);
-    let props = {...appProps, token, isAuthenticated, userProfile};
+    render() {
+        const {
+            Component,
+            pageProps,
+            token,
+            isAuthenticated,
+            userProfile,
+        } = this.props;
 
-    return props;
-  }
+        if (token) {
+            // Ensure token is set for client-side
+            API.setToken(token);
+        }
 
-  render() {
-    const {
-      Component,
-      pageProps,
-      token,
-      isAuthenticated,
-      userProfile,
-    } = this.props;
+        let renderProps = {...pageProps, token, isAuthenticated, userProfile};
 
-    if (token) {
-      // Ensure token is set for client-side
-      API.setToken(token);
+        return <Component {...renderProps} />;
     }
-
-    let renderProps = {...pageProps, token, isAuthenticated, userProfile};
-
-    return <Component {...renderProps} />;
-  }
 }

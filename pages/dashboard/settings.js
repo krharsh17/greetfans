@@ -7,78 +7,71 @@ import DashboardPlatformSettings from '../../components/dashboardPlatformSetting
 import DashboardHeader from '../../components/dashboardHeader';
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super();
-  }
-
-  static async getInitialProps(context) {
-    let userProfile = await API.makeRequest('get', '/api/profile');
-    let userPlatform = await API.makeRequest('get', '/api/profile/platform');
-    let products = await API.makeRequest('get', '/api/products');
-
-    return {
-      profile: userProfile,
-      platform: userPlatform,
-      products: products,
-      dashboardType: 'settings',
-    };
-  }
-
-  disconnectStripeAccount = async () => {
-    await API.makeRequest('post', '/api/profile/disconnect_stripe');
-    redirect('/dashboard/settings');
-  };
-
-  componentDidMount() {
-    // TODO: Move this to a server side check
-    if (!this.props.isAuthenticated) {
-      redirect('/login');
+    constructor(props) {
+        super();
     }
-  }
 
-  render() {
-    return (
-      <Layout
-        isAuthenticated={this.props.isAuthenticated}
-        userProfile={this.props.userProfile}
-        title="Platform settings"
-        isDashboard="true"
-      >
-        <div className="dashboard">
-          <DashboardHeader
-            profile={this.props.profile}
-            platform={this.props.platform}
-            dashboardType={this.props.dashboardType}
-          />
+    static async getInitialProps(context) {
+        let userProfile = await API.makeRequest('get', '/api/profile');
+        let userPlatform = await API.makeRequest('get', '/api/profile/platform');
+        let products = await API.makeRequest('get', '/api/products');
 
-          <div className="row">
-            <div className="col-6">
-              <div className="row">
-                <div className="col-8">
-                  <div className="clearfix">
-                    <h3>Platform settings</h3>
-                  </div>
+        return {
+            profile: userProfile,
+            platform: userPlatform,
+            products: products,
+            dashboardType: 'settings',
+        };
+    }
+
+    disconnectStripeAccount = async () => {
+        await API.makeRequest('post', '/api/profile/disconnect_stripe');
+        redirect('/dashboard/settings');
+    };
+
+    render() {
+        return (
+            <Layout
+                isAuthenticated={this.props.isAuthenticated}
+                userProfile={this.props.userProfile}
+                title="Platform settings"
+                isDashboard="true"
+            >
+                <div className="dashboard">
+                    <DashboardHeader
+                        profile={this.props.profile}
+                        platform={this.props.platform}
+                        dashboardType={this.props.dashboardType}
+                    />
+
+                    <div className="row">
+                        <div className="col-6">
+                            <div className="row">
+                                <div className="col-8">
+                                    <div className="clearfix">
+                                        <h3>Platform settings</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <DashboardPlatformSettings platform={this.props.platform}/>
+
+                            {this.props.platform.stripe && (
+                                <>
+                                    <h3>Stripe</h3>
+                                    <button
+                                        type="submit"
+                                        className="btn-submit btn btn-secondary"
+                                        onClick={this.disconnectStripeAccount}
+                                    >
+                                        Disconnect Stripe account
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-              <DashboardPlatformSettings platform={this.props.platform} />
-
-              {this.props.platform.stripe && (
-                <>
-                  <h3>Stripe</h3>
-                  <button
-                    type="submit"
-                    className="btn-submit btn btn-secondary"
-                    onClick={this.disconnectStripeAccount}
-                  >
-                    Disconnect Stripe account
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-        <style jsx>{`
+                <style jsx>{`
           .dashboard {
             padding-bottom: 50px;
           }
@@ -89,9 +82,9 @@ class Dashboard extends React.Component {
             margin-bottom: 30px;
           }
         `}</style>
-      </Layout>
-    );
-  }
+            </Layout>
+        );
+    }
 }
 
 export default Dashboard;

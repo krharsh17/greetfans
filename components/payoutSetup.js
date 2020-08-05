@@ -3,51 +3,51 @@ import API from '../helpers/api';
 import logger from '../helpers/logger';
 
 class StripeSetup extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.handleConnect = this.handleConnect.bind(this);
-  }
-
-  async getRedirectInfo() {
-    return API.makeRequest('post', `/api/payouts/stripe`);
-  }
-
-  async handleConnect() {
-    logger.log('ProfileStripe.handleConnect');
-    let response = await this.getRedirectInfo();
-    let url = response.location;
-    if (url) {
-      window.location.href = url;
+        this.handleConnect = this.handleConnect.bind(this);
     }
-  }
 
-  render() {
-    let signUpLink = '/api/stripe/connect';
+    async getRedirectInfo() {
+        return API.makeRequest('post', `/api/payouts/stripe`);
+    }
 
-    return (
-      <>
-        <div className="stripe-setup">
-          <h3>Connect your Stripe account</h3>
-          <p>We are using Stripe to for payments and payouts.</p>
+    async handleConnect() {
+        logger.log('ProfileStripe.handleConnect');
+        let response = await this.getRedirectInfo();
+        let url = response.location;
+        if (url) {
+            window.location.href = url;
+        }
+    }
 
-          <div className="stripe-box">
-            <img src="/stripe_blue.svg" />
-          </div>
+    render() {
+        let signUpLink = '/api/stripe/connect';
 
-          <a
-            className="btn btn-primary text-center btn-full"
-            onClick={this.handleConnect}
-            href="#"
-          >
-            Connect Stripe
-          </a>
+        return (
+            <>
+                <div className="stripe-setup">
+                    <h3>Connect your Stripe account</h3>
+                    <p>We are using Stripe to for payments and payouts.</p>
 
-          <p className="text-center notice">
-            You'll be redirected to Stripe for onboarding
-          </p>
-        </div>
-        <style jsx>{`
+                    <div className="stripe-box">
+                        <img src="/stripe_blue.svg"/>
+                    </div>
+
+                    <a
+                        className="btn btn-primary text-center btn-full"
+                        onClick={this.handleConnect}
+                        href="#"
+                    >
+                        Connect Stripe
+                    </a>
+
+                    <p className="text-center notice">
+                        You'll be redirected to Stripe for onboarding
+                    </p>
+                </div>
+                <style jsx>{`
           .stripe-setup {
           }
 
@@ -89,9 +89,9 @@ class StripeSetup extends Component {
             margin-bottom: 20px;
           }
         `}</style>
-      </>
-    );
-  }
+            </>
+        );
+    }
 }
 
 export default StripeSetup;

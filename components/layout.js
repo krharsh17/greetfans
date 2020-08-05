@@ -5,20 +5,20 @@ import NProgress from '../components/nprogress';
 import getConfig from 'next/config';
 
 const Layout = (props) => (
-  <>
-    <Head title={props.title || 'Home'} />
-    <NProgress />
+    <>
+        <Head title={props.title || 'Home'}/>
+        <NProgress/>
 
-    {!getConfig().publicRuntimeConfig.stripe.publicKey && (
-      <div className="api-warning">
-        <p>
-          Looks like don't have your Stripe Environment variables set. Forgot to
-          set .env file or process.env.STRIPE_SECRET_KEY?
-        </p>
-      </div>
-    )}
+        {!getConfig().publicRuntimeConfig.stripe.publicKey && (
+            <div className="api-warning">
+                <p>
+                    Looks like don't have your Stripe Environment variables set. Forgot to
+                    set .env file or process.env.STRIPE_SECRET_KEY?
+                </p>
+            </div>
+        )}
 
-    {/* {getConfig().publicRuntimeConfig.isTestMode && (
+        {/* {getConfig().publicRuntimeConfig.isTestMode && (
       <div className="api-warning">
         <p>
           Roastery is currently in test-mode. Only test cards can be used, and no
@@ -27,33 +27,33 @@ const Layout = (props) => (
       </div>
     )} */}
 
-    <div
-      className={
-        'app ' +
-        (props.isSplashPage && props.isSplashPage == 'true'
-          ? 'page-splash '
-          : '')
-      }
-    >
-      <Nav
-        isAuthenticated={props.isAuthenticated}
-        isDashboard={props.isDashboard}
-        userProfile={props.userProfile}
-        width={props.width}
-      />
+        <div
+            className={
+                'app ' +
+                (props.isSplashPage && props.isSplashPage == 'true'
+                    ? 'page-splash '
+                    : '')
+            }
+        >
+            <Nav
+                isAuthenticated={props.isAuthenticated}
+                isDashboard={props.isDashboard}
+                userProfile={props.userProfile}
+                width={props.width}
+            />
 
-      <div
-        className={
-          props.width && props.width == 'full'
-            ? 'container-fluid '
-            : 'container content-wrapper'
-        }
-      >
-        {props.children}
-      </div>
-    </div>
+            <div
+                className={
+                    props.width && props.width == 'full'
+                        ? 'container-fluid '
+                        : 'container content-wrapper'
+                }
+            >
+                {props.children}
+            </div>
+        </div>
 
-    <style jsx>{`
+        <style jsx>{`
       :global(body) {
         font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
           sans-serif;
@@ -310,7 +310,7 @@ const Layout = (props) => (
         margin: 0;
       }
     `}</style>
-  </>
+    </>
 );
 
 export default Layout;

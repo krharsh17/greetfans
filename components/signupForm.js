@@ -4,115 +4,137 @@ import {Component} from 'react';
 import {handleLogin} from '../utils/auth';
 import API from '../helpers/api';
 import logger from '../helpers/logger';
-import Link from 'next/link';
 
 class SignupForm extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      platformName: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      error: '',
-    };
+        this.state = {
+            platformName: '',
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            error: '',
+            provider: false
+        };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  async handleSubmit(event) {
-    event.preventDefault();
-
-    try {
-      let req = await API.makeRequest('post', `/api/signup/local`, this.state);
-      handleLogin(req.token);
-    } catch (err) {
-      logger.log('Signup failed.', err);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-  }
 
-  render() {
-    return (
-      <>
-        <div className="signup-form">
-          <form onSubmit={this.handleSubmit}>
-            <input
-              className="new-section name"
-              type="text"
-              id="platformName"
-              name="platformName"
-              placeholder="Platform name"
-              value={this.state.platformName}
-              onChange={this.handleChange}
-              required
-            />
-            <input
-              className="new-section name"
-              type="text"
-              id="firstName"
-              name="firstName"
-              placeholder="First name"
-              value={this.state.firstName}
-              onChange={this.handleChange}
-              required
-            />
+    componentDidMount() {
+        let data = (window.location.href && window.location.href.split("signup?").length > 1 ? window.location.href.split("signup?")[1].split("&") : [])
 
-            <input
-              className="name"
-              type="text"
-              id="lastName"
-              name="lastName"
-              placeholder="Last name"
-              value={this.state.lastName}
-              onChange={this.handleChange}
-              required
-            />
+        this.setState({
+            email: (data.length > 0 ? data[0].split("=")[1] : ''),
+            firstName: (data.length > 1 ? data[1].split("=")[1] : ''),
+            lastName: (data.length > 2 ? data[2].split("=")[1] : ''),
+            uid: (data.length > 3 ? data[3].split("=")[1] : ''),
+            provider: (data.length > 3)
+        })
+    }
 
-            <input
-              className="email"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
+    handleChange(event) {
+        const target = event.target;
+        const name = target.name;
+        const value = target.value;
 
-            <input
-              className="password"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
+        this.setState({
+            [name]: value,
+        });
+    }
 
-            <button type="submit" className="btn btn-primary btn-full">
-              Create platform
-            </button>
+    async handleSubmit(event) {
+        event.preventDefault();
+        if (!this.state.provider) {
 
-            <p className={`error ${this.state.error && 'show'}`}>
-              {this.state.error && `Error: ${this.state.error}`}
-            </p>
-          </form>
-        </div>
-        <style jsx>{`
+            try {
+                let req = await API.makeRequest('post', `/api/signup/local`, this.state);
+                handleLogin(req.token);
+            } catch (err) {
+                logger.log('Signup failed.', err);
+            }
+        } else {
+            try {
+                let req = await API.makeRequest('post', `/api/signup/createPlatform`, this.state);
+                handleLogin(req.token);
+            } catch (err) {
+                logger.log('Signup failed.', err);
+            }
+        }
+    }
+
+    render() {
+        return (
+            <>
+                <div className="signup-form">
+                    <form onSubmit={this.handleSubmit}>
+                        <input
+                            className="new-section name"
+                            type="text"
+                            id="platformName"
+                            name="platformName"
+                            placeholder="Platform name"
+                            value={this.state.platformName}
+                            onChange={this.handleChange}
+                            required
+                        />
+                        <input
+                            className="new-section name"
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            placeholder="First name"
+                            value={this.state.firstName}
+                            onChange={this.handleChange}
+                            required
+                        />
+
+                        <input
+                            className="name"
+                            type="text"
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Last name"
+                            value={this.state.lastName}
+                            onChange={this.handleChange}
+                            required
+                        />
+
+                        <input
+                            className="email"
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Email"
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            required
+                        />
+
+                        {(!this.state.provider ? <input
+                            className="password"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            required
+                        /> : <div/>)}
+
+
+                        <button type="submit" className="btn btn-primary btn-full">
+                            Create platform
+                        </button>
+
+                        <p className={`error ${this.state.error && 'show'}`}>
+                            {this.state.error && `Error: ${this.state.error}`}
+                        </p>
+                    </form>
+                </div>
+                <style jsx>{`
           .new-section {
             margin-top: 16px;
           }
@@ -144,9 +166,9 @@ class SignupForm extends Component {
             display: block;
           }
         `}</style>
-      </>
-    );
-  }
+            </>
+        );
+    }
 }
 
 export default SignupForm;

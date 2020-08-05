@@ -3,89 +3,89 @@ import Link from 'next/link';
 import API from '../helpers/api';
 
 class DashboardHeader extends Component {
-  constructor() {
-    super();
-  }
+    constructor() {
+        super();
+    }
 
-  async handleDashboardLink() {
-    let req = await API.makeRequest('get', '/api/payouts/link');
-    window.open(req.url);
-  }
+    async handleDashboardLink() {
+        let req = await API.makeRequest('get', '/api/payouts/link');
+        window.open(req.url);
+    }
 
-  render() {
-    let {profile, platform} = this.props;
-    let avatarUrl = profile ? profile.avatar : '/avatar.png';
+    render() {
+        let {profile, platform} = this.props;
+        let avatarUrl = profile ? profile.avatar : '/avatar.png';
 
-    return (
-      <div className="dashboard-header">
-        <div className="bg-overlay"></div>
-        <div className="row">
-          <div className="col-12">
-            {profile && (
-              <div className="media user-details">
-                <img src={avatarUrl} className="mr-3 avatar" />
-                <div className="media-body">
-                  <div className="user-details-body align-middle">
-                    <h5 className="mt-0">
-                      {profile.firstName + ' ' + profile.lastName}
-                    </h5>
-                    <p className="text-secondary">{profile.email}</p>
-                  </div>
+        return (
+            <div className="dashboard-header">
+                <div className="bg-overlay"></div>
+                <div className="row">
+                    <div className="col-12">
+                        {profile && (
+                            <div className="media user-details">
+                                <img src={avatarUrl} className="mr-3 avatar"/>
+                                <div className="media-body">
+                                    <div className="user-details-body align-middle">
+                                        <h5 className="mt-0">
+                                            {profile.firstName + ' ' + profile.lastName}
+                                        </h5>
+                                        <p className="text-secondary">{profile.email}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-3">
-            <div className="platform-details">
-              <div className="row-one">
-                <strong>{platform.name}</strong>
-                <p className="text-secondary">
-                  {platform.address} <br />
-                  {platform.city} {platform.state} {platform.zip}
-                </p>
-              </div>
-            </div>
-          </div>
+                <div className="row">
+                    <div className="col-lg-3">
+                        <div className="platform-details">
+                            <div className="row-one">
+                                <strong>{platform.name}</strong>
+                                <p className="text-secondary">
+                                    {platform.address} <br/>
+                                    {platform.city} {platform.state} {platform.zip}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-          <div className="col-lg-5">
-            <div className="platform-details">
-              <p>
-                <strong>TEL:</strong> {platform.phone}
-              </p>
-              <p>
-                <strong>Email:</strong> {platform.email}
-              </p>
-              <p>
-                <strong>M-F:</strong> 10AM-8PM
-              </p>
-            </div>
-          </div>
+                    <div className="col-lg-5">
+                        <div className="platform-details">
+                            <p>
+                                <strong>TEL:</strong> {platform.phone}
+                            </p>
+                            <p>
+                                <strong>Email:</strong> {platform.email}
+                            </p>
+                            <p>
+                                <strong>M-F:</strong> 10AM-8PM
+                            </p>
+                        </div>
+                    </div>
 
-          <div className="col-lg-4">
-            <div className="settings">
-              <nav>
-                <a href={'/p/' + platform.slug} target="_blank">
-                  Visit public site
-                </a>{' '}
-                <br />
-                <a
-                  href="https://dashboard.stripe.com/test/payments"
-                  target="_blank"
-                >
-                  Recent orders
-                </a>{' '}
-                <br />
-                <Link href="/dashboard/settings">
-                  <a>Platform settings</a>
-                </Link>
-              </nav>
-            </div>
-          </div>
-        </div>
+                    <div className="col-lg-4">
+                        <div className="settings">
+                            <nav>
+                                <a href={'/p/' + platform.slug} target="_blank">
+                                    Visit public site
+                                </a>{' '}
+                                <br/>
+                                <a
+                                    href="https://dashboard.stripe.com/test/payments"
+                                    target="_blank"
+                                >
+                                    Recent orders
+                                </a>{' '}
+                                <br/>
+                                <Link href="/dashboard/settings">
+                                    <a>Platform settings</a>
+                                </Link>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
 
-        <style jsx>{`
+                <style jsx>{`
           .dashboard-header {
             font-size: 14px;
             line-height: 24px;
@@ -197,8 +197,9 @@ class DashboardHeader extends Component {
           }              
 
         `}</style>
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
+
 export default DashboardHeader;

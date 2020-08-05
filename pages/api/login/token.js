@@ -1,39 +1,34 @@
 import {generateToken} from '../../../utils/authToken';
-import bcrypt from 'bcrypt';
 import firebase from 'firebase/app'
-import initFirebase from "../../../utils/auth/initFirebase";
+import initFirebase from "../../../utils/initFirebase";
 import 'firebase/firestore'
+
 initFirebase()
-
+// Token generator for email+pwd authentication
 export default async (req, res) => {
-  const {email, password} = req.body;
+    const {email, password} = req.body;
 
-  let userSnapshot = await firebase.firestore()
-      .collection("users")
-      .where("email", "==" , email).get()
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
 
-  let userAccount = {}
+    })
 
-  userSnapshot.forEach(doc => {
-    userAccount = doc.data()
-  })
+    if (firebase.auth().currentUser) {
+        let userSnapshot = await firebase.firestore()
+            .collection("users")
+            .where("email", "==", email).get()
 
-  // let userAccount = storage
-  //   .get('users')
-  //   .find({email: email})
-  //   .value();
+        let userAccount = {}
 
-  let hashedPassword = userAccount.password;
+        userSnapshot.forEach(doc => {
+            userAccount = doc.data()
+        })
 
-  let isPasswordMatch = await bcrypt.compare(password, hashedPassword);
+        const token = generateToken({
+            userId: userAccount.userId,
+        });
 
-  if (isPasswordMatch) {
-    const token = generateToken({
-      userId: userAccount.userId,
-    });
-
-    res.send({token: token});
-  } else {
-    return res.status(400).json({message: 'invalid password'});
-  }
+        res.send({token: token});
+    } else {
+        return res.status(400).json({message: 'invalid password'});
+    }
 };

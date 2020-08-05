@@ -12,6 +12,13 @@ function handleLogin(token, context) {
   redirect('/dashboard', context);
 }
 
+function handleProviderLogin(token, user, context) {
+  logger.log('auth.handleLogin', token);
+  cookie.set('token', token, {expires: 1});
+
+  redirect('/signup?email=' + user.email + "&fName=" + user.displayName.split(" ")[0] + "&lName=" + user.displayName.split(" ")[1] + "&uid=" + user.uid, context)
+}
+
 function logout() {
   logger.log('auth.logout');
   cookie.remove('token');
@@ -20,4 +27,4 @@ function logout() {
   redirect('/');
 }
 
-export {handleLogin, logout};
+export {handleLogin, logout, handleProviderLogin};

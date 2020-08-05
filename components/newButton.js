@@ -1,30 +1,28 @@
-import Link from 'next/link';
-
 function NewButton(props) {
-  const target = React.createRef();
+    const target = React.createRef();
 
-  return (
-    <div className="new-button">
-      {props.showTip && (
-        <div className="overlay">
-          <span className="triangle">▲</span>
-          <strong>{props.tipTitle}</strong>
-          <br />
-          {props.tipBody}
-        </div>
-      )}
+    return (
+        <div className="new-button">
+            {props.showTip && (
+                <div className="overlay">
+                    <span className="triangle">▲</span>
+                    <strong>{props.tipTitle}</strong>
+                    <br/>
+                    {props.tipBody}
+                </div>
+            )}
 
-      <a
-        href={props.link}
-        ref={target}
-        target="_blank"
-        className="btn btn-primary btn-new"
-      >
-        + {props.label}
-      </a>
+            <a
+                href={props.link}
+                ref={target}
+                target="_blank"
+                className="btn btn-primary btn-new"
+            >
+                + {props.label}
+            </a>
 
-      <style jsx>
-        {`
+            <style jsx>
+                {`
           .new-button {
             position: relative;
           }
@@ -76,9 +74,9 @@ function NewButton(props) {
             }
           }
         `}
-      </style>
-    </div>
-  );
+            </style>
+        </div>
+    );
 }
 
 export default NewButton;

@@ -1,28 +1,28 @@
 export default function StripeBanner(props) {
-  return (
-    <div className="annotation">
-      <p>
-        <img src="/stripe.svg" width="60" />
-        Roastery is a{' '}
-        <a className="stripe" href="https://stripe.com">
-          Stripe
-        </a>{' '}
-        demo that uses{' '}
-        <a href="https://stripe.com/connect" target="_blank">
-          Connect
-        </a>{' '}
-        to power a SaaS platform for coffee roasters.{' '}
-        <a
-          className="github arrow"
-          href="https://github.com/stripe/stripe-demo-connect-roastery-saas-platform"
-          target="_blank"
-        >
-          View on GitHub
-        </a>
-      </p>
+    return (
+        <div className="annotation">
+            <p>
+                <img src="/stripe.svg" width="60"/>
+                Roastery is a{' '}
+                <a className="stripe" href="https://stripe.com">
+                    Stripe
+                </a>{' '}
+                demo that uses{' '}
+                <a href="https://stripe.com/connect" target="_blank">
+                    Connect
+                </a>{' '}
+                to power a SaaS platform for coffee roasters.{' '}
+                <a
+                    className="github arrow"
+                    href="https://github.com/stripe/stripe-demo-connect-roastery-saas-platform"
+                    target="_blank"
+                >
+                    View on GitHub
+                </a>
+            </p>
 
-      <style jsx>
-        {`
+            <style jsx>
+                {`
           .annotation {
             position: absolute;
             bottom: 0;
@@ -67,7 +67,7 @@ export default function StripeBanner(props) {
             }
           }
         `}
-      </style>
-    </div>
-  );
+            </style>
+        </div>
+    );
 }

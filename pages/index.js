@@ -4,31 +4,31 @@ import Layout from '../components/layout';
 import StripeBanner from '../components/stripeBanner';
 
 class Home extends React.Component {
-  render() {
-    return (
-      <Layout
-        isAuthenticated={this.props.isAuthenticated}
-        userProfile={this.props.userProfile}
-        title="Welcome"
-        isSplashPage="true"
-      >
-        <div className="home">
-          <div className="container">
-            <div className="text">
-              <h1>Manage your coffee roastery with ease.</h1>
-              <h2>
-                Roastery is a Stripe demo that is using Stripe Connect to power
-                a SaaS platform for coffee roasters.
-              </h2>
-              <Link href="/signup">
-                <a className="btn btn-primary">Get started</a>
-              </Link>
-            </div>
-          </div>
+    render() {
+        return (
+            <Layout
+                isAuthenticated={this.props.isAuthenticated}
+                userProfile={this.props.userProfile}
+                title="Welcome"
+                isSplashPage="true"
+            >
+                <div className="home">
+                    <div className="container">
+                        <div className="text">
+                            <h1>Manage your coffee roastery with ease.</h1>
+                            <h2>
+                                Roastery is a Stripe demo that is using Stripe Connect to power
+                                a SaaS platform for coffee roasters.
+                            </h2>
+                            <Link href="/signup">
+                                <a className="btn btn-primary">Get started</a>
+                            </Link>
+                        </div>
+                    </div>
 
-          <StripeBanner />
-        </div>
-        <style jsx>{`
+                    <StripeBanner/>
+                </div>
+                <style jsx>{`
           .home {
             display: flex;
             height: 100%;
@@ -59,9 +59,9 @@ class Home extends React.Component {
             border: 0;
           }
         `}</style>
-      </Layout>
-    );
-  }
+            </Layout>
+        );
+    }
 }
 
 export default Home;

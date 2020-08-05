@@ -5,48 +5,51 @@ import PlatformNav from '../../../components/platformNav';
 import API from '../../../helpers/api';
 
 export default class PlatformHome extends React.Component {
-  static async getInitialProps(context) {
-    let platformSlug = context.query.id;
-    let platform = await API.makeRequest(
-      'get',
-      '/api/platforms/slug/' + platformSlug,
-    );
+    static async getInitialProps(context) {
+        let platformSlug = context.query.id;
+        let platform = await API.makeRequest(
+            'get',
+            '/api/platforms/slug/' + platformSlug,
+        );
 
-    return {
-      platform: platform,
-    };
-  }
+        return {
+            platform: platform,
+        };
+    }
 
-  render() {
-    return (
-      <PlatformLayout
-        isAuthenticated={this.props.isAuthenticated}
-        userProfile={this.props.userProfile}
-        title={this.props.platform.name}
-        hideNavigation={true}
-      >
-        <div className="platform-home">
-          <div className="row full-height">
-            <div className="col-lg-6 no-spacer">
-              <img className="platform-image" src={this.props.platform.coverURL}/>
-            </div>
+    render() {
+        return (
+            <PlatformLayout
+                isAuthenticated={this.props.isAuthenticated}
+                userProfile={this.props.userProfile}
+                title={this.props.platform.name}
+                hideNavigation={true}
+            >
+                <div className="platform-home">
+                    <div className="row full-height">
+                        <div className="col-lg-6 no-spacer">
+                            <img className="platform-image"
+                                 src={(this.props.platform.coverURL ? this.props.platform.coverURL : 'https://source.unsplash.com/random')}/>
+                        </div>
 
-            <div className="col-lg-6">
-              <PlatformNav platform={this.props.platform} />
+                        <div className="col-lg-6">
+                            <PlatformNav platform={this.props.platform}/>
 
-              <div className="text-wrap">
-                <div className="text">
-                  <img src={this.props.platform.platformLogo} style={{width: '80px', height: '80px', borderRadius: '80px'}}/>
-                  <h1>{this.props.platform.tagline}️</h1>
-                  <Link href={'/p/' + this.props.platform.slug + '/products'}>
-                    <a className="btn btn-primary">Shop now</a>
-                  </Link>
+                            <div className="text-wrap">
+                                <div className="text">
+                                    <img
+                                        src={(this.props.platform.platformLogo ? this.props.platform.platformLogo : 'https://source.unsplash.com/random')}
+                                        style={{width: '80px', height: '80px', borderRadius: '80px'}}/>
+                                    <h1>{(this.props.platform.tagline ? this.props.platform.tagline : "Best coffee in town")}️</h1>
+                                    <Link href={'/p/' + this.props.platform.slug + '/products'}>
+                                        <a className="btn btn-primary">Shop now</a>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <style jsx>{`
+                <style jsx>{`
           .platform-home {
             width: 100%;
             height: 100%;
@@ -87,7 +90,7 @@ export default class PlatformHome extends React.Component {
             padding: 0;
           }
         `}</style>
-      </PlatformLayout>
-    );
-  }
+            </PlatformLayout>
+        );
+    }
 }
