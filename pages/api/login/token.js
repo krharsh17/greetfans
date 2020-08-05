@@ -1,14 +1,27 @@
 import {generateToken} from '../../../utils/authToken';
 import bcrypt from 'bcrypt';
-import storage from '../../../helpers/storage';
+import firebase from 'firebase/app'
+import initFirebase from "../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+initFirebase()
 
 export default async (req, res) => {
   const {email, password} = req.body;
 
-  let userAccount = storage
-    .get('users')
-    .find({email: email})
-    .value();
+  let userSnapshot = await firebase.firestore()
+      .collection("users")
+      .where("email", "==" , email).get()
+
+  let userAccount = {}
+
+  userSnapshot.forEach(doc => {
+    userAccount = doc.data()
+  })
+
+  // let userAccount = storage
+  //   .get('users')
+  //   .find({email: email})
+  //   .value();
 
   let hashedPassword = userAccount.password;
 

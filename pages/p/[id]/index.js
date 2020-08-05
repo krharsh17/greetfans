@@ -28,7 +28,7 @@ export default class PlatformHome extends React.Component {
         <div className="platform-home">
           <div className="row full-height">
             <div className="col-lg-6 no-spacer">
-              <div className="platform-image"></div>
+              <img className="platform-image" src={this.props.platform.coverURL}/>
             </div>
 
             <div className="col-lg-6">
@@ -36,7 +36,8 @@ export default class PlatformHome extends React.Component {
 
               <div className="text-wrap">
                 <div className="text">
-                  <h1>Coffee roasted by hand.️</h1>
+                  <img src={this.props.platform.platformLogo} style={{width: '80px', height: '80px', borderRadius: '80px'}}/>
+                  <h1>{this.props.platform.tagline}️</h1>
                   <Link href={'/p/' + this.props.platform.slug + '/products'}>
                     <a className="btn btn-primary">Shop now</a>
                   </Link>
@@ -55,9 +56,9 @@ export default class PlatformHome extends React.Component {
             height: 100%;
             width: 100%;
 
-            background: url(/platform_splash.png) no-repeat;
-            background-size: cover;
-            background-position: center center;
+            
+            object-fit: cover;
+            object-position: center center;
           }
 
           h1 {

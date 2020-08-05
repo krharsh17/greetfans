@@ -39,7 +39,10 @@
     "react-number-format": "^4.2.0",
     "shortid": "^2.2.14",
     "slug": "^3.3.0",
-    "stripe": "^8.67.0"
+    "stripe": "^8.67.0",
+    "firebase": "^7.17.1",
+    "firebase-admin": "^9.0.0",
+    "react-firebaseui": "^4.1.0"
   },
   "devDependencies": {
     "prettier": "^2.0.5"

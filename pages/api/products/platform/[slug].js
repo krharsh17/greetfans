@@ -1,11 +1,20 @@
-import storage from '../../../../helpers/storage';
 import stripe from '../../../../helpers/stripe';
+import firebase from 'firebase/app'
+import initFirebase from "../../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+initFirebase()
 
 export default async (req, res) => {
   let slug = req.query.slug;
 
   try {
-    let platform = storage.get('platforms').find({slug: slug}).value();
+    let platformSnap = await firebase.firestore().collection("platforms").where("slug", "==", slug).get()
+
+    let platform = {}
+    platformSnap.forEach(doc => {
+      platform = doc.data()
+    })
+    // let platform = storage.get('platforms').find({slug: slug}).value();
 
     if (!platform) {
       throw new Error('platform not found');

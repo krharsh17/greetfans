@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-unfetch';
-import storage from '../../../helpers/storage';
+import firebase from 'firebase/app'
 import requireAuthEndpoint from '../../../utils/requireAuthEndpoint';
+import initFirebase from "../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+initFirebase()
 
 const env = require('dotenv').config({path: './.env'});
 
@@ -28,13 +31,33 @@ let updatePlatform = async (authenticatedUserId, stripeUserId) => {
     stripeUserId: stripeUserId,
   };
 
-  return storage
-    .get('platforms')
-    .find({ownerUserId: authenticatedUserId})
-    .assign({
-      stripe: stripeObject,
-    })
-    .write();
+  let platformSnap = await firebase.firestore()
+      .collection("platforms")
+      .where("ownerUserId", "==", authenticatedUserId)
+      .get()
+
+  let platformDoc = {}
+
+  platformSnap.forEach(doc => {
+    platformDoc = doc.data()
+  })
+
+  let newPlatform = {
+    ...platformDoc,
+    stripe: stripeObject
+  }
+
+  return firebase.firestore().collection("platforms")
+      .doc(platformDoc.platformId)
+      .set(newPlatform)
+
+  // return storage
+  //   .get('platforms')
+  //   .find({ownerUserId: authenticatedUserId})
+  //   .assign({
+  //     stripe: stripeObject,
+  //   })
+  //   .write();
 };
 
 export default requireAuthEndpoint(async (req, res) => {

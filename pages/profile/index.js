@@ -8,11 +8,18 @@ import DashboardHeader from '../../components/dashboardHeader';
 class Profile extends React.Component {
   constructor(props) {
     super();
+    this.state = {
+      data: ''
+    }
+
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   static async getInitialProps(context) {
+    let profile = await API.makeRequest('get', '/api/profile')
     return {
-      profile: await API.makeRequest('get', '/api/profile'),
+      profile: profile,
     };
   }
 
@@ -21,6 +28,21 @@ class Profile extends React.Component {
     if (!this.props.isAuthenticated) {
       redirect('/login');
     }
+    let profile = this.props ? this.props.profile : {}
+    this.setState({
+      data: JSON.stringify(profile, null, 2)
+    })
+  }
+
+  async handleUpdate() {
+    if(JSON.parse(this.state.data))
+    await API.makeRequest('post', '/api/profile/update', JSON.parse(this.state.data))
+  }
+
+  handleChange(ev) {
+    this.setState({
+      data: ev.target.value
+    })
   }
 
   render() {
@@ -36,7 +58,8 @@ class Profile extends React.Component {
         <div className="profile">
           <h4>Your profile details</h4>
           <pre className="profile-details bg-light">
-            <code>{JSON.stringify(profile, null, 2)}</code>
+            <textarea style={{width: '100%', height: '240px'}} value={this.state.data} onChange={this.handleChange}/>
+            <input type={'button'} onClick={this.handleUpdate} value={'Update'} />
           </pre>
         </div>
         <style jsx>{`

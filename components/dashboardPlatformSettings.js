@@ -12,7 +12,8 @@ class DashboardPlatformSettings extends Component {
       ...props.platform,
     };
 
-    this.isFormDisabled = getConfig().publicRuntimeConfig.isTestMode;
+    // this.isFormDisabled = getConfig().publicRuntimeConfig.isTestMode;
+    this.isFormDisabled = false;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -66,7 +67,7 @@ class DashboardPlatformSettings extends Component {
               <input
                 className="form-control"
                 type="text"
-                disabled
+                // disabled
                 value={'http://roastey.com/p/' + this.state.slug}
               />
             </div>
@@ -138,6 +139,90 @@ class DashboardPlatformSettings extends Component {
                 value={this.state.description}
                 disabled={this.isFormDisabled}
                 onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">TEL</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="tel"
+                  name="tel"
+                  placeholder=""
+                  value={this.state.tel}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">Available Timings</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="timings"
+                  name="timings"
+                  placeholder=""
+                  value={this.state.timings}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">Support Email</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder=""
+                  value={this.state.email}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">Platform Logo</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="platformLogo"
+                  name="platformLogo"
+                  placeholder=""
+                  value={this.state.platformLogo}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">Cover Picture</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="coverURL"
+                  name="coverURL"
+                  placeholder=""
+                  value={this.state.coverURL}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="title">Tagline</label>
+              <input
+                  className="form-control"
+                  type="text"
+                  id="tagline"
+                  name="tagline"
+                  placeholder=""
+                  value={this.state.tagline}
+                  disabled={this.isFormDisabled}
+                  onChange={this.handleChange}
               />
             </div>
 

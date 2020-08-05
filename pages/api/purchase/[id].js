@@ -1,15 +1,25 @@
-import storage from '../../../helpers/storage';
 import stripe from '../../../helpers/stripe';
+import firebase from 'firebase/app'
+import initFirebase from "../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+initFirebase()
 
 export default async (req, res) => {
   let sessionId = req.query.id;
   let platformId = req.query.platformId;
 
   try {
-    let platform = storage
-      .get('platforms')
-      .find({platformId: platformId})
-      .value();
+    let platformSnap = await firebase.firestore()
+        .collection("platforms")
+        .doc(platformId)
+        .get()
+
+    let platform = platformSnap.data()
+
+    // let platform = storage
+    //   .get('platforms')
+    //   .find({platformId: platformId})
+    //   .value();
 
     if (!platform) {
       throw new Error('platform not found');

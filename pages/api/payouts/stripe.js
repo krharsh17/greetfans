@@ -1,16 +1,28 @@
-import storage from '../../../helpers/storage';
 const querystring = require('querystring');
 const env = require('dotenv').config({path: './.env'});
 import requireAuthEndpoint from '../../../utils/requireAuthEndpoint';
+import firebase from 'firebase/app'
+import initFirebase from "../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+initFirebase()
 
 export default requireAuthEndpoint(async (req, res) => {
   let authenticatedUserId = req.authToken.userId;
 
   try {
-    let userAccount = storage
-      .get('users')
-      .find({userId: authenticatedUserId})
-      .value();
+    // let userAccount = storage
+    //   .get('users')
+    //   .find({userId: authenticatedUserId})
+    //   .value();
+
+
+    let userSnapshot = await firebase.firestore()
+        .collection("users")
+        .doc(authenticatedUserId).get()
+
+
+    let userAccount = userSnapshot.data()
+
 
     let clientId = process.env.STRIPE_CLIENT_ID;
 

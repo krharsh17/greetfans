@@ -18,7 +18,8 @@ export default requireAuthEndpoint(async (req, res) => {
 
     if (products.data.length) {
       return res.status(200).json(products.data);
-    }
+    } else
+      return res.status(404).json([])
   } catch (err) {
     return res.status(400).json(err.message);
   }

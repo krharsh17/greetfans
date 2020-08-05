@@ -1,6 +1,10 @@
-import storage from '../../../helpers/storage';
 import stripe from '../../../helpers/stripe';
 import logger from '../../../helpers/logger';
+import initFirebase from "../../../utils/auth/initFirebase";
+import 'firebase/firestore'
+import firebase from 'firebase/app'
+
+initFirebase()
 
 import requireAuthEndpoint from '../../../utils/requireAuthEndpoint';
 
@@ -9,10 +13,19 @@ export default requireAuthEndpoint(async (req, res) => {
 
   try {
     // 1) Get User
-    let userAccount = storage
-      .get('users')
-      .find({userId: authenticatedUserId})
-      .value();
+    let userSnapshot = await firebase.firestore()
+        .collection("users")
+        .where("userId", "==", authenticatedUserId).get()
+
+    let userAccount = {}
+
+    userSnapshot.forEach(doc => {
+      userAccount = doc.data()
+    })
+    // let userAccount = storage
+    //   .get('users')
+    //   .find({userId: authenticatedUserId})
+    //   .value();
 
     if (!userAccount.stripe) {
       throw new Error('No stripe account found');

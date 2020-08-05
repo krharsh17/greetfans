@@ -19,6 +19,7 @@ export default class PlatformContact extends React.Component {
 
   render() {
     let platform = this.props.platform;
+
     return (
       <PlatformLayout
         isAuthenticated={this.props.isAuthenticated}
@@ -30,7 +31,7 @@ export default class PlatformContact extends React.Component {
         <div className="platform-home">
           <div className="row full-height">
             <div className="col-lg-6 no-spacer">
-              <div className="platform-image"></div>
+              <img className="platform-image" src={this.props.platform.coverURL}/>
             </div>
 
             <div className="col-lg-6">
@@ -45,8 +46,10 @@ export default class PlatformContact extends React.Component {
                         {platform.address} <br />
                         {platform.city} {platform.state} {platform.zip} <br />
                         <br />
-                        {platform.phone} <br />
-                        {platform.email} <br />
+                        Timing: {platform.timings} <br />
+                        <br />
+                        Tel: {platform.phone} <br />
+                        Support: {platform.email} <br />
                       </p>
                     </div>
                   </div>
@@ -65,9 +68,9 @@ export default class PlatformContact extends React.Component {
             height: 100%;
             width: 100%;
 
-            background: url(/platform_splash.png) no-repeat;
-            background-size: cover;
-            background-position: center center;
+            
+            object-fit: cover;
+            object-position: center center;
           }
 
           h1 {
