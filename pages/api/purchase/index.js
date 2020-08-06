@@ -27,6 +27,7 @@ export default async (req, res) => {
             throw new Error('platform not found');
         }
 
+
         let stripeUserId = platform.stripe.stripeUserId;
         let platformFee = 0;
 
@@ -39,7 +40,7 @@ export default async (req, res) => {
 
         if (prices.data) {
             let price = prices.data[0];
-            platformFee = price.unit_amount * 0.1;
+            // platformFee = price.unit_amount * 0.1;
             priceId = price.id;
         }
 
@@ -51,7 +52,7 @@ export default async (req, res) => {
 
         const session = await stripe.checkout.sessions.create(
             {
-                mode: 'payment',
+                mode: 'subscription',
                 payment_method_types: ['card'],
                 billing_address_collection: 'required',
                 shipping_address_collection: {
@@ -63,16 +64,20 @@ export default async (req, res) => {
                         quantity: 1,
                     },
                 ],
-                payment_intent_data: {
-                    application_fee_amount: platformFee,
-                },
+                // payment_intent_data: {
+                //     application_fee_amount: platformFee,
+                // },
                 success_url: successUrl,
                 cancel_url: cancelUrl,
             },
             {
                 stripeAccount: stripeUserId,
             },
-        );
+        ).catch(err => {
+            console.log(err)
+        })
+
+        console.log("SESSION" + JSON.stringify(session))
 
         return res.status(200).json(session);
     } catch (err) {

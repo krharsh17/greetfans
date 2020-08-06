@@ -2,6 +2,10 @@ import React from 'react';
 import API from '../../../../../helpers/api';
 import PlatformNav from '../../../../../components/platformNav';
 import PlatformLayout from '../../../../../components/platformLayout';
+import {loadStripe} from "@stripe/stripe-js";
+import getConfig from "next/config";
+
+let publicKey = getConfig().publicRuntimeConfig.stripe.publicKey;
 
 // Page for single product's details
 export default class Product extends React.Component {
@@ -29,6 +33,7 @@ export default class Product extends React.Component {
                 return elem
         })
 
+
         return {
             platform: platform,
             product: products[0],
@@ -50,9 +55,14 @@ export default class Product extends React.Component {
                 priceId: product.price.id,
             });
 
+
+            this.stripePromise = await loadStripe(publicKey, {
+                stripeAccount: this.props.platform.stripe.stripeUserId,
+            });
+
             if (purchase.id) {
                 const stripe = await this.stripePromise;
-                stripe.redirectToCheckout({
+                await stripe.redirectToCheckout({
                     sessionId: purchase.id,
                 });
             }

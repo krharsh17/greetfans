@@ -1,16 +1,10 @@
 import {loadStripe} from '@stripe/stripe-js';
 import getConfig from 'next/config';
 
-let publicKey = getConfig().publicRuntimeConfig.stripe.publicKey;
-
 export default class PlatformProductsList extends React.Component {
     constructor(props) {
         super();
         this.props = props;
-
-        this.stripePromise = loadStripe(publicKey, {
-            stripeAccount: this.props.platform.stripe.stripeUserId,
-        });
     }
 
     render() {
