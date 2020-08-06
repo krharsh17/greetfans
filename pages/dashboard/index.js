@@ -7,11 +7,13 @@ import DashboardProductsList from '../../components/dashboardProductsList';
 import DashboardHeader from '../../components/dashboardHeader';
 import NewButton from '../../components/newButton';
 
+// Page for dashboard
 class Dashboard extends React.Component {
     constructor(props) {
         super();
     }
 
+    // Fetching the platform, profile & products details
     static async getInitialProps(context) {
         let profile = await API.makeRequest('get', '/api/profile');
         let platform = await API.makeRequest('get', '/api/profile/platform');
@@ -25,6 +27,7 @@ class Dashboard extends React.Component {
         };
     }
 
+    // Checking for connection with stripe
     componentDidMount() {
         if (this.props.platform && !this.props.platform.stripe) {
             redirect('/profile/payouts');

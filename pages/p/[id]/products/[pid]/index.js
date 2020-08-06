@@ -3,7 +3,10 @@ import API from '../../../../../helpers/api';
 import PlatformNav from '../../../../../components/platformNav';
 import PlatformLayout from '../../../../../components/platformLayout';
 
+// Page for single product's details
 export default class Product extends React.Component {
+
+    // Fetching the platform & product details
     static async getInitialProps(context) {
         let platformSlug = context.query.id;
 

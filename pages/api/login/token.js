@@ -18,10 +18,8 @@ export default async (req, res) => {
             .where("email", "==", email).get()
 
         let userAccount = {}
-
-        userSnapshot.forEach(doc => {
-            userAccount = doc.data()
-        })
+        if (userSnapshot.docs.length > 0)
+            userAccount = userSnapshot.docs[0].data()
 
         const token = generateToken({
             userId: userAccount.userId,

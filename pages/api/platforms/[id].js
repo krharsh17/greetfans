@@ -6,6 +6,7 @@ import 'firebase/firestore'
 
 initFirebase()
 
+// Updating the platform documents with new properties
 export default requireAuthEndpoint(async (req, res) => {
     let authenticatedUserId = req.authToken.userId;
     let id = req.query.id;

@@ -6,11 +6,13 @@ import API from '../../helpers/api';
 import DashboardPlatformSettings from '../../components/dashboardPlatformSettings';
 import DashboardHeader from '../../components/dashboardHeader';
 
+// Settings page for dashboard
 class Dashboard extends React.Component {
     constructor(props) {
         super();
     }
 
+    // Fetching initial values for the dashboard (profile, platform & products)
     static async getInitialProps(context) {
         let userProfile = await API.makeRequest('get', '/api/profile');
         let userPlatform = await API.makeRequest('get', '/api/profile/platform');
@@ -24,6 +26,7 @@ class Dashboard extends React.Component {
         };
     }
 
+    // Method to disconnect stripe from an account
     disconnectStripeAccount = async () => {
         await API.makeRequest('post', '/api/profile/disconnect_stripe');
         redirect('/dashboard/settings');

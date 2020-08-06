@@ -4,6 +4,7 @@ import firebase from 'firebase/app'
 
 initFirebase()
 
+// Getting the platform data via slug
 export default async (req, res) => {
     let slug = req.query.slug;
 
@@ -17,9 +18,9 @@ export default async (req, res) => {
 
         let itemData = {}
 
-        itemSnap.forEach(doc => {
-            itemData = doc.data()
-        })
+        if(itemSnap.docs.length > 0)
+            itemData = itemSnap.docs[0].data()
+
 
         let item = {
             platformId: itemData.platformId,

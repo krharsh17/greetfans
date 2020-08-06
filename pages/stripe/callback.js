@@ -7,7 +7,9 @@ import logger from '../../helpers/logger';
 
 import Layout from '../../components/layout';
 
+// Callback page from Stripe
 class AuthStripeCallback extends React.Component {
+    // No initial data needed
     static async getInitialProps() {
         return {};
     }

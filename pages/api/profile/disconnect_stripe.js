@@ -5,6 +5,7 @@ import requireAuthEndpoint from '../../../utils/requireAuthEndpoint';
 
 initFirebase()
 
+//
 export default requireAuthEndpoint(async (req, res) => {
     let authenticatedUserId = req.authToken.userId;
 
@@ -14,11 +15,7 @@ export default requireAuthEndpoint(async (req, res) => {
             .where("ownerUserId", "==", authenticatedUserId)
             .get()
 
-        let platform = {}
-
-        platformSnap.forEach(doc => {
-            platform = doc.data()
-        })
+        let platform = platformSnap.docs[0].data()
 
         await firebase.firestore().collection("platforms")
             .doc(platform.platformId)

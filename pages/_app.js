@@ -4,6 +4,7 @@ import API from '../helpers/api';
 import nextCookie from 'next-cookies';
 import cookie from 'js-cookie';
 
+// Main app component
 export default class GlobalApp extends App {
     static getAuthenticationState(appContext) {
         let token = '';
@@ -22,6 +23,7 @@ export default class GlobalApp extends App {
         };
     }
 
+    // Initializing the global variables
     static async getInitialProps(appContext) {
         let {token, isAuthenticated} = this.getAuthenticationState(appContext);
 

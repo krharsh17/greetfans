@@ -3,6 +3,7 @@ import API from '../helpers/api';
 import logger from '../helpers/logger';
 import {redirect} from '../utils/redirect';
 
+// Settings update form for the dashboard
 class DashboardPlatformSettings extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +12,7 @@ class DashboardPlatformSettings extends Component {
             ...props.platform,
         };
 
-        // this.isFormDisabled = getConfig().publicRuntimeConfig.isTestMode;
+        // Updated this to enable the form inputs
         this.isFormDisabled = false;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

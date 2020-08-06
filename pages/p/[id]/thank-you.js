@@ -5,7 +5,10 @@ import PlatformNav from '../../../components/platformNav';
 import API from '../../../helpers/api';
 import moment from 'moment';
 
+// Thank you page for platform
 export default class PlatformThankYou extends React.Component {
+
+    // Fetching platform & session details
     static async getInitialProps(context) {
         let platform = await API.makeRequest(
             'get',

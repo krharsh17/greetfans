@@ -2,6 +2,7 @@ import requireAuthEndpoint from '../../../utils/requireAuthEndpoint';
 import stripe from '../../../helpers/stripe';
 import API from '../../../helpers/api';
 
+// Fetching the list of products without prices for a platform
 export default requireAuthEndpoint(async (req, res) => {
     let authenticatedUserId = req.authToken.userId;
 

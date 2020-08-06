@@ -3,6 +3,8 @@ import Layout from '../components/layout';
 import SignupForm from '../components/signupForm';
 import StripeBanner from '../components/stripeBanner';
 
+// Signup page with signup form
+// This is also used to onboard a user signed in through a 3rd party provider
 class Signup extends React.Component {
 
     render() {

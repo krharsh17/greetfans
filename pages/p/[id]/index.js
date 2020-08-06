@@ -4,7 +4,10 @@ import PlatformLayout from '../../../components/platformLayout';
 import PlatformNav from '../../../components/platformNav';
 import API from '../../../helpers/api';
 
+// Home page for a platform
 export default class PlatformHome extends React.Component {
+
+    // Fetching the platform details
     static async getInitialProps(context) {
         let platformSlug = context.query.id;
         let platform = await API.makeRequest(

@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../../components/layout';
 import PayoutSetup from '../../components/payoutSetup';
 
+// Landing for payouts page
 class ProfilePayouts extends React.Component {
     constructor() {
         super();

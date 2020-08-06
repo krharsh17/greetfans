@@ -11,14 +11,18 @@ import logger from "../helpers/logger";
 // Init the Firebase app.
 initFirebase()
 
+// Constructing the firebase auth config object for the firebase-ui component
 const firebaseAuthConfig = {
     signInFlow: 'popup',
+    // Added the available providers here
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.TwitterAuthProvider.PROVIDER_ID
     ],
     credentialHelper: 'none',
+    // omitted succesCallbackUrl to handle redirection manually
     callbacks: {
+        // Once authenticated, proceeding with the in-app flow of onboarding platform
         signInSuccessWithAuthResult: async ({user}, redirectUrl) => {
             const url = `/api/login/providerToken`;
 

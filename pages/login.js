@@ -4,6 +4,8 @@ import StripeBanner from '../components/stripeBanner';
 import LoginComponent from '../components/loginForm';
 import FirebaseAuth from "../components/firebaseAuth";
 
+// Login page with login form
+// Also used for signing in through 3rd party providers & onboarding through signup form
 export default class LoginPage extends React.Component {
     render() {
         return (

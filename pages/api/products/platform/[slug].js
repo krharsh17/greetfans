@@ -5,6 +5,7 @@ import 'firebase/firestore'
 
 initFirebase()
 
+// Fetching the list of products with prices for a platform
 export default async (req, res) => {
     let slug = req.query.slug;
 
@@ -12,9 +13,8 @@ export default async (req, res) => {
         let platformSnap = await firebase.firestore().collection("platforms").where("slug", "==", slug).get()
 
         let platform = {}
-        platformSnap.forEach(doc => {
-            platform = doc.data()
-        })
+        if(platformSnap.docs.length > 0)
+            platform = platformSnap.docs[0].data()
 
         if (!platform) {
             throw new Error('platform not found');

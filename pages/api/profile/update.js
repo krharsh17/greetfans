@@ -5,13 +5,13 @@ import 'firebase/firestore'
 
 initFirebase()
 
+// Updating user's data
 export default requireAuthEndpoint(async (req, res) => {
     let authenticatedUserId = req.authToken.userId;
 
 
     try {
 
-        console.log(req.body)
         await firebase.firestore().collection("users")
             .doc(authenticatedUserId)
             .update(req.body)

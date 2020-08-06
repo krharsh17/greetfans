@@ -4,7 +4,10 @@ import PlatformProductsList from '../../../../components/platformProductsList';
 import PlatformNav from '../../../../components/platformNav';
 import PlatformLayout from '../../../../components/platformLayout';
 
+// Page for list of products on a platform
 export default class PlatformProducts extends React.Component {
+
+    // Fetching the platform & products list
     static async getInitialProps(context) {
         let platformSlug = context.query.id;
 

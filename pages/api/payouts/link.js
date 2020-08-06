@@ -17,10 +17,8 @@ export default requireAuthEndpoint(async (req, res) => {
             .where("userId", "==", authenticatedUserId).get()
 
         let userAccount = {}
-
-        userSnapshot.forEach(doc => {
-            userAccount = doc.data()
-        })
+        if(userSnapshot.docs.length > 0)
+            userAccount = userSnapshot.docs[0].data()
 
         if (!userAccount.stripe) {
             throw new Error('No stripe account found');

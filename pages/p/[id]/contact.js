@@ -3,7 +3,10 @@ import PlatformLayout from '../../../components/platformLayout';
 import PlatformNav from '../../../components/platformNav';
 import API from '../../../helpers/api';
 
+// Page for contact details of a platform
 export default class PlatformContact extends React.Component {
+
+    // Fetching the platform's details
     static async getInitialProps(context) {
         let platformSlug = context.query.id;
         let platform = await API.makeRequest(

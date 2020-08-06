@@ -38,10 +38,8 @@ let updatePlatform = async (authenticatedUserId, stripeUserId) => {
         .get()
 
     let platformDoc = {}
-
-    platformSnap.forEach(doc => {
-        platformDoc = doc.data()
-    })
+    if (platformSnap.docs.length > 0)
+        platformDoc = platformSnap.docs[0].data()
 
     let newPlatform = {
         ...platformDoc,

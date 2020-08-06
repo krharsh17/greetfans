@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from '../../components/layout';
 import API from '../../helpers/api';
 
+// Page for user's profile
 class Profile extends React.Component {
     constructor(props) {
         super();
@@ -14,6 +15,7 @@ class Profile extends React.Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
+    // Populating the user's data into the textarea
     static async getInitialProps(context) {
         let profile = await API.makeRequest('get', '/api/profile')
         return {

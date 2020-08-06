@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout from '../components/layout';
 import StripeBanner from '../components/stripeBanner';
 
+// Home page landing component
 class Home extends React.Component {
     render() {
         return (
