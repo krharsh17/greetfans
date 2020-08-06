@@ -15,6 +15,10 @@ export default async (req, res) => {
     let hashedPassword = await bcrypt.hash(password, 10);
     let normalizedEmail = email.toLowerCase();
 
+    // Creates a new account with email and password and signs in
+    await firebase.auth().createUserWithEmailAndPassword(email, password).catch(err => {
+        console.log(err)
+    })
 
     if (firebase.auth().currentUser) {
         const user = {

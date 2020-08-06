@@ -8,8 +8,9 @@ initFirebase()
 export default async (req, res) => {
     const {email, password} = req.body;
 
+    // Signs in with email and password
     firebase.auth().signInWithEmailAndPassword(email, password).catch(err => {
-
+        console.log(err)
     })
 
     if (firebase.auth().currentUser) {
